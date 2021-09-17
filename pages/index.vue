@@ -64,7 +64,7 @@ export default defineComponent({
         const tx = new Transaction(blockchain.system.publicKey, publicKey, amount).sign(blockchain.system.privateKey)
         const block = new Block([tx])
         block.previousHash = blockchain.getLastBlock().hash
-        block.mine()
+        block.mine(2)
         blockchain.chain.push(block)
       }
     }
