@@ -5,6 +5,9 @@
         <div class="text-2xl font-semibold">
           Pending Transactions
         </div>
+        <div class="pt-1 text-xs text-gray-500">
+          * Start mining to include all pending transactions in the next block.
+        </div>
         <div class="relative py-4 flex flex-col">
           <div v-if="pendingTransactions.length === 0">
             No pending transactions.
@@ -91,7 +94,7 @@ export default defineComponent({
     //
     const startMining = async () => {
       loading.value = true
-      await $sleep(1000)
+      await $sleep(500)
       blockchain.mine(wallets[0].publicKey)
       loading.value = false
       emit('changeTab', 0)

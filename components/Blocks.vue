@@ -36,6 +36,9 @@
             </button>
           </div>
         </div>
+        <div class="px-4 pt-1 text-xs text-gray-500">
+          * For creating block, you must make transaction first.
+        </div>
         <div class="relative">
           <transition name="button-scroll-to-left">
             <button v-if="showBtnScrollToLeft" class="absolute rounded-full text-sm bottom-0 right-0 mb-6 mr-4 z-10 block py-2 px-4 shadow-xl text-gray-100 bg-blue-500" @click="blocksScrollLeft">

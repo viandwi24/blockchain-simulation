@@ -23,6 +23,23 @@
     }
   }
 }
+.wallets {
+  overflow: hidden;
+  overflow-x: auto;
+  padding: 1rem;
+  background: theme('colors.gray.50');
+  & > .wallet {
+    @apply shadow-lg rounded-lg border border-gray-500;
+    white-space: nowrap;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 150px;
+    max-height: 150px;
+    height: 100%;
+    background: theme('colors.blue.400');
+    z-index: 1;
+  }
+}
 .block-enter-active, .block-leave-active {
   transition: all 1s;
 }

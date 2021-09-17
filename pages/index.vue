@@ -9,6 +9,7 @@
 import { computed, defineAsyncComponent, defineComponent, onMounted, reactive, ref } from '@nuxtjs/composition-api'
 import Blockchain from '@/lib/blockchain'
 import Transaction from '@/lib/transaction'
+import Block from '@/lib/block'
 import { KeyGenerator } from '@/lib/signature'
 export default defineComponent({
   setup() {
@@ -20,7 +21,8 @@ export default defineComponent({
     const tabs = computed(() => [
       { label: `Blocks (${blockchain.chain.length})` },
       { label: `Wallets (${wallets.length})` },
-      { label: `Pending (${blockchain.pendingTransactions.length})` }
+      { label: `Pending (${blockchain.pendingTransactions.length})` },
+      { label: `New Transaction` },
     ])
     const activeTab = ref(0)
     const onTabClick = (i) => {
@@ -34,6 +36,9 @@ export default defineComponent({
           break;
         case 2:
           component = defineAsyncComponent(() => import('@/components/Pending.vue'))
+          break;
+        case 3:
+          component = defineAsyncComponent(() => import('@/components/Transaction.vue'))
           break;
         default:
           component = defineAsyncComponent(() => import('@/components/Blocks.vue'))
@@ -56,14 +61,17 @@ export default defineComponent({
         privateKey
       })
       if (amount > 0) {
-        blockchain.pendingTransactions.push(new Transaction(blockchain.system.publicKey, publicKey, amount).sign(blockchain.system.privateKey))
-        blockchain.mine(publicKey)
+        const tx = new Transaction(blockchain.system.publicKey, publicKey, amount).sign(blockchain.system.privateKey)
+        const block = new Block([tx])
+        block.previousHash = blockchain.getLastBlock().hash
+        block.mine()
+        blockchain.chain.push(block)
       }
     }
 
     // events
     onMounted(() => {
-      createWallet('Alfian Dwi Nugraha')
+      createWallet('My Wallet', 1000000)
       // createWallet('Wildan Firdaus')
       // for (let i = 0; i < 1; i++) {
       //   addTransaction(wallets[0], wallets[1], 200)

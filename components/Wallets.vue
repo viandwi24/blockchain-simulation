@@ -142,6 +142,7 @@
 import { defineComponent, ref, useContext } from "@nuxtjs/composition-api"
 import { KeyGenerator } from '@/lib/signature'
 import Transaction from '@/lib/transaction'
+import Block from '@/lib/block'
 // import copy from 'copy-to-clipboard'
 
 export default defineComponent({
@@ -204,7 +205,11 @@ export default defineComponent({
         privateKey
       })
       if (selectedWallet.value.amount > 0) {
-        blockchain.pendingTransactions.push(new Transaction(blockchain.system.publicKey, publicKey, selectedWallet.value.amount).sign(blockchain.system.privateKey))
+        const tx = new Transaction(blockchain.system.publicKey, publicKey, selectedWallet.value.amount).sign(blockchain.system.privateKey)
+        const block = new Block([tx])
+        block.previousHash = blockchain.getLastBlock().hash
+        block.mine()
+        blockchain.chain.push(block)
       }
       closePanel()
     }
@@ -222,24 +227,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="scss">
-
-.wallets {
-  overflow: hidden;
-  overflow-x: auto;
-  padding: 1rem;
-  background: theme('colors.gray.50');
-  & > .wallet {
-    @apply shadow-lg rounded-lg border border-gray-500;
-    white-space: nowrap;
-    min-width: 300px;
-    max-width: 300px;
-    min-height: 150px;
-    max-height: 150px;
-    height: 100%;
-    background: theme('colors.blue.400');
-    z-index: 1;
-  }
-}
-</style>
