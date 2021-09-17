@@ -1,7 +1,13 @@
 <template>
-  <div>
-    <Menu :tabs="tabs" :active-tab="activeTab" @onTabClick="onTabClick" />
-    <component :is="componentTab" :blockchain.sync="blockchain" :wallets.sync="wallets" @changeTab="onTabClick" />
+  <div class="screen flex flex-col min-h-screen max-h-screen overflow-x-hidden shadow-xl">
+    <Navbar />
+    <div class="flex-1 flex flex-col max-h-full overflow-y-auto overflow-x-hidden bg-blue-500">
+      <div class="flex-1 container p-4 mx-auto flex flex-col justify-center">
+        <Menu :tabs="tabs" :active-tab="activeTab" @onTabClick="onTabClick" />
+        <component :is="componentTab" :blockchain.sync="blockchain" :wallets.sync="wallets" @changeTab="onTabClick" />
+      </div>
+    </div>
+    <Log />
   </div>
 </template>
 
@@ -117,6 +123,14 @@ function useTour({ onTabClick }) {
     return btn
   }
 
+  const addSteps = (tour) => {
+    addGroupStep1({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
+    addGroupStep2({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
+    addGroupStep3({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
+    addGroupStep4({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
+    return tour
+  }
+
   const startTour = () => {
     const tour = new Shepherd.Tour({
       useModalOverlay: true,
@@ -130,10 +144,8 @@ function useTour({ onTabClick }) {
     })
 
     // group step 1 : block
-    addGroupStep1({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
-    addGroupStep2({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
-    addGroupStep3({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
-    addGroupStep4({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
+    addSteps(tour)
+    // console.log(addSteps)
     tour.start();
   }
 

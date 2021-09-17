@@ -56,7 +56,7 @@
               <font-awesome-icon :icon="['fas', 'clock']" class="text-gray-300" />
             </div>
           </div>
-          <Button v-if="pendingTransactions.length !== 0" text="Start mining" @click.native="startMining" />
+          <Button v-if="pendingTransactions.length !== 0" text="Start mining" @click.native="openDialog" />
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@
       </div>
       <div>
         Mining in progress...
-        <span class="text-xs">You can open Console / Dev Panel in your browser to see what happening...</span>
+        <div class="text-xs">You can open Console / Dev Panel in your browser to see what happening...</div>
       </div>
     </div>
   </div>
@@ -74,6 +74,7 @@
 
 <script>
 import { computed, defineComponent, ref, useContext } from "@nuxtjs/composition-api"
+import Shepherd from 'shepherd.js'
 
 export default defineComponent({
   props: {
@@ -95,15 +96,49 @@ export default defineComponent({
     const loading = ref(false)
 
     //
+    const openDialog = () => {
+      const tour = new Shepherd.Tour({
+        useModalOverlay: true,
+        defaultStepOptions: {
+          cancelIcon: {
+            enabled: true
+          },
+          classes: 'shepherd-theme-square',
+        },
+      })
+      tour.addStep({
+        title: 'Before Mining',
+        text: 'I suggest you to open the javascript console / dev panel in your browser, to see a simulation of what happens when mining.',
+        buttons: [
+          {
+            text: 'No',
+            classes: 'shepherd-button-secondary',
+            action() {
+              return this.hide();
+            },
+          },
+          {
+            text: "Okay, Lets Go",
+            action() {
+              setTimeout(() => startMining(), 500)
+              return this.hide();
+            }
+          }
+        ]
+      })
+      tour.start()
+    }
     const startMining = async () => {
+      console.clear()
       loading.value = true
       await $sleep(500)
-      blockchain.mine(wallets[0].publicKey)
+      await blockchain.mine(wallets[0].publicKey)
       loading.value = false
       emit('changeTab', 0)
     }
 
     return {
+      openDialog,
       startMining,
       pendingTransactions,
       loading
