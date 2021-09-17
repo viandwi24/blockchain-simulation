@@ -61,6 +61,11 @@ export default {
   build: {
   },
 
+  // router
+  router: {
+    base: '/blockchain-simulation/',
+  },
+
   // fontawesome
   fontawesome: {
     icons: {
