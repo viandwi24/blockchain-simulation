@@ -64,7 +64,10 @@
       <div class="text-center">
         <font-awesome-icon :icon="['fas', 'circle-notch']" spin />
       </div>
-      Mining in progress...
+      <div>
+        Mining in progress...
+        <span class="text-xs">You can open Console / Dev Panel in your browser to see what happening...</span>
+      </div>
     </div>
   </div>
 </template>
