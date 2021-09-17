@@ -1,6 +1,9 @@
-import dayjs from "dayjs"
+import Vue from 'vue'
+import VueShepherd from 'vue-shepherd'
+
+Vue.use(VueShepherd)
 
 export default ({ app }, inject) => {
   inject('sleep', ms => new Promise(resolve => setTimeout(resolve, ms)))
-  inject('dayjs', dayjs)
+  inject('dayjs', require('dayjs'))
 }

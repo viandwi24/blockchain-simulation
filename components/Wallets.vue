@@ -2,7 +2,7 @@
   <div>
     <!-- Wallets -->
     <transition>
-      <div class="rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
+      <div class="panel-wallet rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
         <div class="px-4 flex justify-between">
           <div class="text-2xl font-semibold">
             Wallets
@@ -45,7 +45,7 @@
     </transition>
     <!-- Actions -->
     <transition name="panels">
-      <div v-if="action" class="mt-4 flex-1 rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
+      <div v-if="action" class="panel-wallet-action mt-4 flex-1 rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
         <div class="px-4 flex space-x-2">
           <div>
             <button class="rounded px-2 py-1 text-xs bg-red-100 text-red-600" @click="closePanel">

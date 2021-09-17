@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div class="rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
+    <div class="panel-pending-transaction rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
       <div class="px-4 flex flex-col justify-between">
         <div class="text-2xl font-semibold">
           Pending Transactions

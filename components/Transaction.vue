@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div class="rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
+    <div class="panel-transaction rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
       <div class="px-4 flex flex-col justify-between">
         <div class="text-2xl font-semibold">
           New Transactions
@@ -31,10 +31,14 @@
                 <select id="to" v-model="transaction.to" class="bg-gray-50 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
                   <template v-for="(wallet, i) in wallets">
                     <option v-if="wallet.publicKey !== wallets[0].publicKey" :key="`key-${i}`" :value="i">
-                      {{ wallet.name }}
+                      {{ wallet.name }} [{{ wallet.publicKey }}]
                     </option>
                   </template>
                 </select>
+                <div class="text-xs text-gray-500">
+                  <span v-if="wallets.filter(w => w.publicKey !== wallets[0].publicKey).length === 0">* Create wallet before make transaction</span>
+                  <span v-else>* select the address of the recipient</span>
+                </div>
               </div>
             </div>
             <div class="w-full md:flex mb-6">
@@ -44,7 +48,7 @@
                 </label>
               </div>
               <div class="md:w-9/12">
-                <input id="from" v-model="transaction.amount" type="number" class="bg-gray-50 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
+                <input id="from" v-model="transaction.amount" min="1" type="number" class="bg-gray-50 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
               </div>
             </div>
             <div class="w-full md:flex mb-6">
@@ -80,7 +84,7 @@ export default defineComponent({
     const transaction = reactive({
       from: wallets[0].publicKey,
       to: null,
-      amount: 0,
+      amount: 1,
     })
 
     const create = () => {

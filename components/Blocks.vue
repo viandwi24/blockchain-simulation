@@ -2,7 +2,7 @@
   <div>
     <!-- Blocks -->
     <transition>
-      <div class="rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
+      <div class="panel-blocks rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
         <div class="px-4 flex justify-between">
           <div class="text-2xl font-semibold">
             Block
@@ -63,15 +63,29 @@
                 Block {{ i+1 }}
                 <span v-if="i === 0" class="text-xs">(Genesis Block)</span>
               </div>
+              <div class="text-sm p-2 border-b border-gray-500">
+                <div class="mb-2">
+                  <div class="font-semibold">Hash</div>
+                  <div class="truncate text-pink-600">{{ block.hash }}</div>
+                </div>
+                <div>
+                  <div class="font-semibold">Previous Block Hash</div>
+                  <div class="truncate text-purple-600">{{ block.previousHash }}</div>
+                </div>
+              </div>
               <div v-if="!blocksCompactView">
                 <div class="text-sm p-2 border-b border-gray-500">
                   <div class="mb-2">
-                    <div class="font-semibold">Hash</div>
-                    <div class="truncate text-pink-600">{{ block.hash }}</div>
+                    <div class="font-semibold">Timestamp</div>
+                    <div class="truncate">
+                      <div class="text-sm">{{ (block.timestamp) }}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div class="font-semibold">Previous Block Hash</div>
-                    <div class="truncate text-purple-600">{{ block.previousHash }}</div>
+                  <div class="mb-2">
+                    <div class="font-semibold">Datetime</div>
+                    <div class="truncate">
+                      <div class="text-blue-500">{{ ($dayjs.unix(block.timestamp).format('DD/MM/YYYY HH:mm:ss')) }}</div>
+                    </div>
                   </div>
                 </div>
                 <div class="text-sm p-2 border-b border-gray-500">
@@ -157,6 +171,21 @@
                 <div class="truncate font-semibold">
                   Amount :
                   <span class="text-gray-500">{{ transaction.amount }} Coin</span>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="truncate font-semibold">
+                  Timestamp :
+                  <span class="text-gray-500">
+                    <span>{{ ($dayjs.unix(transaction.timestamp).format('DD/MM/YYYY HH:mm:ss')) }}</span>
+                    <span class="text-xs text-blue-500">[{{ transaction.timestamp }}]</span>
+                  </span>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="truncate font-semibold">
+                  Signature :
+                  <span class="text-gray-500">{{ transaction.signature }} Coin</span>
                 </div>
               </div>
             </div>
