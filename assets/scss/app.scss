@@ -1,0 +1,49 @@
+.blocks {
+  overflow: hidden;
+  overflow-x: auto;
+  padding: 1rem;
+  background: theme('colors.gray.50');
+  & > .block-chain {
+    @apply shadow-lg;
+    white-space: nowrap;
+    min-width: 250px;
+    max-width: 250px;
+    height: 100%;
+    background: theme('colors.gray.50');
+      z-index: 1;
+    & > .chain {
+      content: '';
+      height: 5px;
+      width: 40px;
+      position: absolute;
+      top: 50%;
+      left: -42px;
+      background: theme('colors.gray.500');
+      z-index: -1;
+    }
+  }
+}
+.block-enter-active, .block-leave-active {
+  transition: all 1s;
+}
+.block-enter, .block-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.button-scroll-to-left-enter-active, .button-scroll-to-left-leave-active {
+  transition: all .5s;
+}
+.button-scroll-to-left-enter, .button-scroll-to-left-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.panels-enter-active, .panels-leave-active {
+  transition: all .5s;
+}
+.panels-enter {
+  transform: translateX(300px);
+}
+.panels-leave-to {
+  opacity: 0;
+  transform: translateX(-300px);
+}
