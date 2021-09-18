@@ -12,14 +12,14 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'blockchain-demo',
+    title: 'Blockchain Simulation',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'A Web Simulation of how Blockchain works in a short and simple way. Built using Javascript and with Vue as Frontend.' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [

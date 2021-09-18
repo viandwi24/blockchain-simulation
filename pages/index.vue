@@ -99,7 +99,12 @@ export default defineComponent({
       tabs,
       activeTab,
     }
-  }
+  },
+  head() {
+    return {
+      title: 'Blockchain Simulation',
+    }
+  },
 })
 
 function useTour({ onTabClick }) {
