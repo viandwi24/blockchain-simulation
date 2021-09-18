@@ -39,13 +39,15 @@ export default defineComponent({
 
 function usePanelDragable() {
   let pos;
-  let panel;
+  // let panel;
   let panelHeader;
+  let panelBody;
 
   const initDragable = () => {
     setTimeout(() => {
-      panel = document.querySelector('.panel-log');
+      // panel = document.querySelector('.panel-log');
       panelHeader = document.querySelector('.panel-log-header');
+      panelBody = document.querySelector('.panel-log-body');
       pos = 0
       panelHeader.addEventListener("mousedown", onMouseDown);
       document.addEventListener("mouseup", onMouseUp);
@@ -75,10 +77,10 @@ function usePanelDragable() {
   const resize = (e) => {
     const dy = pos - e.y;
     pos = e.y
-    if (panel && panel instanceof HTMLElement) {
-      let res = (parseInt(getComputedStyle(panel, '').height) + dy)
+    if (panelBody && panelBody instanceof HTMLElement) {
+      let res = (parseInt(getComputedStyle(panelBody, '').height) + dy)
       if (res < 60) res = 60
-      panel.style.height = res + 'px'
+      panelBody.style.height = res + 'px'
     }
   }
 

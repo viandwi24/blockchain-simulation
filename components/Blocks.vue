@@ -109,7 +109,7 @@
     </transition>
     <!-- Transactions -->
     <transition name="panels">
-      <div v-if="selectedBlock" class="mt-4 flex-1 rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
+      <div v-if="selectedBlock" class="mt-4 flex-1 panel-block-detail rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
         <div class="px-4 flex space-x-2">
           <div>
             <button
