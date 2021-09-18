@@ -91,8 +91,8 @@ export default defineComponent({
       // const to = wallets[1]
       // blockchain.addTransaction((new Transaction(from.publicKey, to.publicKey, 1)).sign(from.privateKey))
       // onTabClick(2)
-      // setTimeout(() => startSelectLanguage().then(() => setTimeout(startTour, 500)), 500)
-      console.log(startSelectLanguage, startTour)
+      setTimeout(() => startSelectLanguage().then(() => setTimeout(startTour, 500)), 500)
+      // console.log(startSelectLanguage, startTour)
     })
 
     return {
