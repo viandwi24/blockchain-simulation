@@ -162,13 +162,13 @@ function useTour({ onTabClick }) {
         return this.back();
       },
       classes: 'shepherd-button-secondary',
-      text: 'Back'
+      text: $t('tour.button.prev')
     },
     {
       action() {
         return this.next();
       },
-      text: 'Next'
+      text: $t('tour.button.next')
     }
   ]
   const withDefaultButton = (next) => {
@@ -230,10 +230,8 @@ function addGroupStep1({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
   ]
   });
   tour.addStep({
-    title: 'Blocks',
-    text: `
-      This is a chained collection of blocks, this block is a representation of a record.
-    `,
+    title: $t('tour.steps[1].title'),
+    text: $t('tour.steps[1].text'),
     attachTo: {
       element: '.panel-blocks',
       on: 'bottom'
@@ -241,11 +239,8 @@ function addGroupStep1({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     buttons: defaultButtons
   });
   tour.addStep({
-    title: 'Chained Block',
-    text: `
-      Each block has an identity (hash) that represents the data in it,
-      and each block will store the identity (has) of the previous block, that's why it is called Blockchain because the blocks will be chained.
-    `,
+    title: $t('tour.steps[2].title'),
+    text: $t('tour.steps[2].text'),
     attachTo: {
       element: '.panel-blocks > div:nth-child(3) > span',
       on: 'right'
@@ -253,13 +248,8 @@ function addGroupStep1({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     buttons: defaultButtons
   });
   tour.addStep({
-    title: 'Genesis Block',
-    text: `
-      Genesis Block is the first block or so-called block number 0.
-      This block does not contain transaction data, only as the first block.
-      In the real world to be precise Bitcoin, the first Block was mined directly by its creator, Satoshi Nakamoto.
-      And he pinned the message "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"
-    `,
+    title: $t('tour.steps[3].title'),
+    text: $t('tour.steps[3].text'),
     attachTo: {
       element: '.block-chain:nth-child(1)',
       on: 'right'
@@ -267,10 +257,8 @@ function addGroupStep1({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     buttons: defaultButtons
   });
   tour.addStep({
-    title: 'Hash Block (1)',
-    text: `
-      This is a hash of block 2
-    `,
+    title: $t('tour.steps[4].title'),
+    text: $t('tour.steps[4].text'),
     attachTo: {
       element: '.block-chain:nth-child(2) div:nth-child(2) div:nth-child(1)',
       on: 'right'
@@ -278,10 +266,8 @@ function addGroupStep1({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     buttons: defaultButtons
   });
   tour.addStep({
-    title: 'Hash Block (2)',
-    text: `
-      This block also records the hash of the previous block
-    `,
+    title: $t('tour.steps[5].title'),
+    text: $t('tour.steps[5].text'),
     attachTo: {
       element: '.block-chain:nth-child(2) > div:nth-child(2) > div:nth-child(2)',
       on: 'right'
@@ -289,16 +275,14 @@ function addGroupStep1({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     buttons: defaultButtons
   });
   tour.addStep({
-      title: 'Hash Block (3)',
-      text: `
-        The result of block 1 will also be included in the data record from block 2
-      `,
+      title: $t('tour.steps[6].title'),
+      text: $t('tour.steps[6].text'),
       attachTo: {
         element: '.block-chain:nth-child(1) > div:nth-child(2) > div:nth-child(1)',
         on: 'right'
       },
       buttons: withDefaultButton({
-        text: 'Next',
+        text: $t('tour.button.next'),
         async action () {
           onTabClick(1)
           this.hide()

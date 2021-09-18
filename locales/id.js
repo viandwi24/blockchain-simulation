@@ -74,6 +74,38 @@ export default {
         text: 'Aplikasi ini dibuat untuk membantu Anda memahami cara blockchain digunakan dan membuat transaksi blockchain. Aku ingin membantu anda memahami cara menggunakan aplikasi ini.',
         prev: 'Tidak usah',
         next: 'Ya, bantu aku',
+      },
+      {
+        title: 'Blokchain',
+        text: 'Ini adalah kumpulan blok yang dirantai, blok ini adalah representasi dari suatu record dalam tabel di database.'
+      },
+      {
+        title: 'Blok Dirantai',
+        text: `
+          Setiap blok memiliki identitas (hash) yang mewakili data di dalamnya,
+          dan setiap blok akan menyimpan identitas (hash) dari blok sebelumnya, makanya disebut Blockchain karena blok akan dirantai.
+        `
+      },
+      {
+        title: 'Genesis Blok',
+        text: `
+          Genesis Block adalah blok pertama atau biasa disebut blok nomor 0.
+          Blok ini tidak berisi data transaksi, hanya sebagai blok pertama.
+          Di dunia nyata tepatnya Bitcoin, Blok pertama ditambang langsung oleh penciptanya, Satoshi Nakamoto.
+          Dan dia menyematkan pesan "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"
+        `
+      },
+      {
+        title: 'Hash Block (1)',
+        text: 'Ini adalah hash dari blok 2'
+      },
+      {
+        title: 'Hash Block (2)',
+        text: 'Blok ini juga mencatat hash dari blok sebelumnya'
+      },
+      {
+        title: 'Hash Block (3)',
+        text: 'Hasil hash dari blok 1 ini juga akan dimasukkan dalam catatan data dari blok selanjutnya yaitu blok 2'
       }
     ]
   },
