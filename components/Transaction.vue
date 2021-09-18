@@ -3,17 +3,17 @@
     <div class="panel-transaction rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
       <div class="px-4 flex flex-col justify-between">
         <div class="text-2xl font-semibold">
-          New Transactions
+          {{ $t('components.newTransaction.title') }}
         </div>
         <div class="pt-1 text-xs text-gray-500">
-          * Add new transactions, this transaction will be added to the pending transaction
+          {{ $t('components.newTransaction.description') }}
         </div>
         <div class="mt-4">
           <form class="w-full">
             <div class="w-full md:flex mb-6">
               <div class="md:w-2/12 pt-2">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
-                  From
+                  {{ $t('other.from') }}
                 </label>
               </div>
               <div class="md:w-9/12">
@@ -24,7 +24,7 @@
             <div class="w-full md:flex mb-6">
               <div class="md:w-2/12 pt-2">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
-                  To
+                  {{ $t('other.to') }}
                 </label>
               </div>
               <div class="md:w-9/12">
@@ -36,15 +36,19 @@
                   </template>
                 </select>
                 <div class="text-xs text-gray-500">
-                  <span v-if="wallets.filter(w => w.publicKey !== wallets[0].publicKey).length === 0">* Create wallet before make transaction</span>
-                  <span v-else>* select the address of the recipient</span>
+                  <span v-if="wallets.filter(w => w.publicKey !== wallets[0].publicKey).length === 0">
+                    * Create wallet before make transaction
+                  </span>
+                  <span v-else>
+                    * select the address of the recipient
+                  </span>
                 </div>
               </div>
             </div>
             <div class="w-full md:flex mb-6">
               <div class="md:w-2/12 pt-2">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
-                  Amount
+                  {{ $t('other.amount') }}
                 </label>
               </div>
               <div class="md:w-9/12">
@@ -54,7 +58,7 @@
             <div class="w-full md:flex mb-6">
               <div class="md:w-2/12"></div>
               <div class="md:w-9/12">
-                <Button v-if="transaction.from !== null && transaction.to !== null && transaction.amount > 0" text="Create Transaction" @click.prevent.native="create" />
+                <Button v-if="transaction.from !== null && transaction.to !== null && transaction.amount > 0" :text="createTransaction" @click.prevent.native="create" />
               </div>
             </div>
           </form>

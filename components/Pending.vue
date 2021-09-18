@@ -3,14 +3,14 @@
     <div class="panel-pending-transaction rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
       <div class="px-4 flex flex-col justify-between">
         <div class="text-2xl font-semibold">
-          Pending Transactions
+          {{ $t('components.pending.title') }}
         </div>
         <div class="pt-1 text-xs text-gray-500">
-          * Start mining to include all pending transactions in the next block.
+          {{ $t('components.pending.description') }}
         </div>
         <div class="relative py-4 flex flex-col">
           <div v-if="pendingTransactions.length === 0">
-            No pending transactions.
+            {{ $t('components.pending.noTransactions') }}
           </div>
           <div
             v-for="(transaction, i) in pendingTransactions"
@@ -30,7 +30,7 @@
             <div class="w-10/12 flex flex-col">
               <div class="flex">
                 <div class="truncate font-semibold">
-                  From :
+                  {{ $t('other.from') }} :
                   <span v-if="transaction.fromAddress === blockchain.system.publicKey" class="text-blue-500">
                     System
                   </span>
@@ -41,13 +41,13 @@
               </div>
               <div class="flex">
                 <div class="truncate font-semibold">
-                  To :
+                  {{ $t('other.to') }} :
                   <span class="text-gray-500">{{ transaction.toAddress }}</span>
                 </div>
               </div>
               <div class="flex">
                 <div class="truncate font-semibold">
-                  Amount :
+                  {{ $t('other.amount') }} :
                   <span class="text-gray-500">{{ transaction.amount }} Coin</span>
                 </div>
               </div>
@@ -56,7 +56,7 @@
               <font-awesome-icon :icon="['fas', 'clock']" class="text-gray-300" />
             </div>
           </div>
-          <Button v-if="pendingTransactions.length !== 0" text="Start mining" @click.native="openDialog" />
+          <Button v-if="pendingTransactions.length !== 0" :text="$t('components.pending.startMining')" @click.native="openDialog" />
         </div>
       </div>
     </div>
@@ -65,8 +65,10 @@
         <font-awesome-icon :icon="['fas', 'circle-notch']" spin />
       </div>
       <div>
-        Mining in progress...
-        <div class="text-xs">You can open Console / Dev Panel in your browser to see what happening...</div>
+        {{ $t('components.pending.miningInProgress') }}
+        <div class="text-xs">
+          {{ $t('components.pending.noteInProgress') }}
+        </div>
       </div>
     </div>
   </div>
@@ -89,7 +91,8 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     //
-    const { $sleep } = useContext()
+    const { $sleep, $t } = useContext()
+
     //
     const { blockchain, wallets } = props
     const pendingTransactions = computed(() => blockchain.pendingTransactions)
@@ -107,18 +110,18 @@ export default defineComponent({
         },
       })
       tour.addStep({
-        title: 'Before Mining',
-        text: 'I suggest you to open the javascript console / dev panel in your browser, to see a simulation of what happens when mining.',
+        title: $t('components.pending.dialog.title'),
+        text: $t('components.pending.dialog.text'),
         buttons: [
           {
-            text: 'No',
+            text: $t('components.pending.dialog.prev'),
             classes: 'shepherd-button-secondary',
             action() {
               return this.hide();
             },
           },
           {
-            text: "Okay, Lets Go",
+            text: $t('components.pending.dialog.next'),
             action() {
               setTimeout(() => startMining(), 500)
               return this.hide();

@@ -55,6 +55,8 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    // https://i18n.nuxtjs.org/setup
+    '@nuxtjs/i18n',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -72,5 +74,16 @@ export default {
       solid: true,
       brands: true
     }
-  }
+  },
+
+  // i18n
+  i18n: {
+    strategy: 'no_prefix',
+    parsePages: false,
+    locales: [
+      { code: 'id', iso: 'id-ID', file: 'id' },
+      { code: 'en', iso: 'en-US', file: 'en' }
+    ],
+    langDir: 'locales/',
+  },
 }

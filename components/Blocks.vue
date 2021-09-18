@@ -5,7 +5,7 @@
       <div class="panel-blocks rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
         <div class="px-4 flex justify-between">
           <div class="text-2xl font-semibold">
-            Block
+            {{ $t('components.blocks.title') }}
           </div>
           <div>
             <button
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="px-4 pt-1 text-xs text-gray-500">
-          * For creating block, you must make transaction first.
+          {{ $t('components.blocks.description') }}
         </div>
         <div class="relative">
           <transition name="button-scroll-to-left">
@@ -60,29 +60,29 @@
               @click="onBlockClick(block, i)"
             >
               <div class="title py-2 px-3 font-semibold border-b border-gray-500">
-                Block {{ i+1 }}
-                <span v-if="i === 0" class="text-xs">(Genesis Block)</span>
+                {{ $t('components.blocks.block.title') }} {{ i+1 }}
+                <span v-if="i === 0" class="text-xs">({{ $t('components.blocks.block.title') }})</span>
               </div>
               <div class="text-sm p-2 border-b border-gray-500">
                 <div class="mb-2">
-                  <div class="font-semibold">Hash</div>
+                  <div class="font-semibold">{{ $t('components.blocks.block.hash') }}</div>
                   <div class="truncate text-pink-600">{{ block.hash }}</div>
                 </div>
                 <div>
-                  <div class="font-semibold">Previous Block Hash</div>
+                  <div class="font-semibold">{{ $t('components.blocks.block.previousBlockHash') }}</div>
                   <div class="truncate text-purple-600">{{ block.previousHash }}</div>
                 </div>
               </div>
               <div v-if="!blocksCompactView">
                 <div class="text-sm p-2 border-b border-gray-500">
                   <div class="mb-2">
-                    <div class="font-semibold">Timestamp</div>
+                    <div class="font-semibold">{{ $t('components.blocks.block.timestamp') }}</div>
                     <div class="truncate">
                       <div class="text-sm">{{ (block.timestamp) }}</div>
                     </div>
                   </div>
                   <div class="mb-2">
-                    <div class="font-semibold">Datetime</div>
+                    <div class="font-semibold">{{ $t('components.blocks.block.datetime') }}</div>
                     <div class="truncate">
                       <div class="text-blue-500">{{ ($dayjs.unix(block.timestamp).format('DD/MM/YYYY HH:mm:ss')) }}</div>
                     </div>
@@ -90,13 +90,13 @@
                 </div>
                 <div class="text-sm p-2 border-b border-gray-500">
                   <div class="mb-2">
-                    <div class="font-semibold">Nonce</div>
+                    <div class="font-semibold">{{ $t('components.blocks.block.nonce') }}</div>
                     <div class="truncate">{{ block.nonce }}</div>
                   </div>
                 </div>
                 <div class="text-sm p-2 border-b border-gray-500">
                   <div class="mb-2">
-                    <div class="font-semibold">Transaction Count</div>
+                    <div class="font-semibold">{{ $t('components.blocks.block.transactionCount') }}</div>
                     <div class="truncate">{{ (block.data.length) }}</div>
                   </div>
                 </div>

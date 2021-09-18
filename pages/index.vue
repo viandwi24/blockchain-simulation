@@ -21,17 +21,20 @@ import { KeyGenerator } from '@/lib/signature'
 
 export default defineComponent({
   setup() {
+    //
+    const { $t } = useContext()
+
     // Setup blockchain
     const blockchain = reactive(new Blockchain())
     const wallets = reactive([])
 
     // ui
     const tabs = computed(() => [
-      { label: `Blocks (${blockchain.chain.length})` },
-      { label: `Wallets (${wallets.length})` },
-      { label: `Pending (${blockchain.pendingTransactions.length})` },
-      { label: `New Transaction` },
-      { label: `Setting` },
+      { label: `${$t('menu.blocks')} (${blockchain.chain.length})` },
+      { label: `${$t('menu.wallets')} (${wallets.length})` },
+      { label: `${$t('menu.pending')} (${blockchain.pendingTransactions.length})` },
+      { label: `${$t('menu.newTransaction')}` },
+      { label: `${$t('menu.setting')}` },
     ])
     const activeTab = ref(0)
     const onTabClick = (i) => {
@@ -77,6 +80,7 @@ export default defineComponent({
     }
 
     //
+    const { startSelectLanguage } = useSelectLanguage()
     const { startTour } = useTour({ onTabClick })
 
     // events
@@ -87,7 +91,8 @@ export default defineComponent({
       // const to = wallets[1]
       // blockchain.addTransaction((new Transaction(from.publicKey, to.publicKey, 1)).sign(from.privateKey))
       // onTabClick(2)
-      setTimeout(startTour, 1000)
+      // setTimeout(() => startSelectLanguage().then(() => setTimeout(startTour, 500)), 500)
+      console.log(startSelectLanguage, startTour)
     })
 
     return {
@@ -107,9 +112,48 @@ export default defineComponent({
   },
 })
 
+function useSelectLanguage() {
+  const { i18n } = useContext()
+  const startSelectLanguage = () => new Promise((resolve) => {
+    const tour = new Shepherd.Tour({
+      useModalOverlay: true,
+      defaultStepOptions: {
+        classes: 'shepherd-theme-square',
+      }
+    })
+    tour.addStep({
+      title: 'Language',
+      text: 'Select your language want to use!',
+      buttons: [
+        {
+          text: 'English',
+          action() {
+            i18n.setLocale('en')
+            this.hide()
+            resolve()
+          }
+        },
+        {
+          text: 'Indonesian',
+          action() {
+            i18n.setLocale('id')
+            this.hide()
+            resolve()
+          }
+        }
+      ]
+    })
+    tour.start()
+  })
+
+  return {
+    startSelectLanguage
+  }
+}
+
 function useTour({ onTabClick }) {
   //
-  const { $sleep } = useContext()
+  const { $sleep, $t } = useContext()
 
   //
   const defaultButtons = [
@@ -134,10 +178,10 @@ function useTour({ onTabClick }) {
   }
 
   const addSteps = (tour) => {
-    addGroupStep1({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
-    addGroupStep2({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
-    addGroupStep3({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
-    addGroupStep4({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
+    addGroupStep1({ $t, $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
+    addGroupStep2({ $t, $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
+    addGroupStep3({ $t, $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
+    addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, onTabClick })
     return tour
   }
 
@@ -165,15 +209,13 @@ function useTour({ onTabClick }) {
   }
 }
 
-function addGroupStep1({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick }) {
+function addGroupStep1({ $t, $sleep, tour, defaultButtons, withDefaultButton, onTabClick }) {
   tour.addStep({
-    title: 'Hello, welcome !',
-    text: `
-      Welcome to blockchain simulation!!! <br> I will guide you how this blockchain works.
-    `,
+    title: $t('tour.steps[0].title'),
+    text: $t('tour.steps[0].text'),
     buttons: [
     {
-      text: 'No',
+      text: $t('tour.steps[0].prev'),
       classes: 'shepherd-button-secondary',
       action() {
         return this.hide();
@@ -183,7 +225,7 @@ function addGroupStep1({ $sleep, tour, defaultButtons, withDefaultButton, onTabC
       action() {
         return this.next();
       },
-      text: "Yes, let's tour"
+      text: $t('tour.steps[0].next')
     }
   ]
   });

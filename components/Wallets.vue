@@ -5,7 +5,7 @@
       <div class="panel-wallet rounded pt-4 overflow-hidden flex flex-col bg-gray-50">
         <div class="px-4 flex justify-between">
           <div class="text-2xl font-semibold">
-            Wallets
+            {{ $t('components.wallets.title') }}
           </div>
           <div>
             <button
@@ -16,7 +16,8 @@
               "
               @click="createWallet"
             >
-              <font-awesome-icon :icon="['fas', 'plus']" /> New
+              <font-awesome-icon :icon="['fas', 'plus']" />
+              {{ $t('nav.new') }}
             </button>
           </div>
         </div>
@@ -54,10 +55,10 @@
           </div>
           <div class="text-2xl font-bold self-center">
             <template v-if="action === 'create'">
-              New Wallet
+              {{ $t('nav.new') }}
             </template>
             <template v-if="action === 'edit'">
-              Edit Wallet
+              {{ $t('nav.edit') }}
             </template>
           </div>
         </div>
@@ -97,7 +98,7 @@
               <div class="w-full md:flex md:items-center mb-6">
                 <div class="md:w-2/12"></div>
                 <div class="md:w-9/12">
-                  <Button text="Save" @click.prevent.native="actionSaveEdit" />
+                  <Button :text="$t('nav.save')" @click.prevent.native="actionSaveEdit" />
                 </div>
               </div>
             </form>
