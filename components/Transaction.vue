@@ -58,7 +58,7 @@
             <div class="w-full md:flex mb-6">
               <div class="md:w-2/12"></div>
               <div class="md:w-9/12">
-                <Button v-if="transaction.from !== null && transaction.to !== null && transaction.amount > 0" :text="createTransaction" @click.prevent.native="create" />
+                <Button v-if="transaction.from !== null && transaction.to !== null && transaction.amount > 0" :text="$t('components.newTransaction.createTransaction')" @click.prevent.native="create" />
               </div>
             </div>
           </form>
