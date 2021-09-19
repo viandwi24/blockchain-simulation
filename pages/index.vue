@@ -3,7 +3,7 @@
     <Navbar />
     <div class="flex-1 flex flex-col max-h-full overflow-y-auto overflow-x-hidden bg-blue-500">
       <div class="flex-1 container p-4 mx-auto flex flex-col justify-center">
-        <Menu :tabs="tabs" :active-tab="activeTab" @onTabClick="onTabClick" />
+        <Menu :tabs.sync="tabs" :active-tab.sync="activeTab" @onTabClick="onTabClick" />
         <component :is="componentTab" :blockchain.sync="blockchain" :wallets.sync="wallets" @changeTab="onTabClick" />
       </div>
     </div>
@@ -29,13 +29,18 @@ export default defineComponent({
     const wallets = reactive([])
 
     // ui
-    const tabs = computed(() => [
-      { label: `${$t('menu.blocks')} (${blockchain.chain.length})` },
-      { label: `${$t('menu.wallets')} (${wallets.length})` },
-      { label: `${$t('menu.pending')} (${blockchain.pendingTransactions.length})` },
-      { label: `${$t('menu.newTransaction')}` },
-      { label: `${$t('menu.setting')}` },
-    ])
+    const tabs = computed(() => {
+      const blocks = blockchain.chain.length
+      const walletsCount = wallets.length
+      const pending = blockchain.pendingTransactions.length
+      return [
+        { label: `${$t('menu.blocks')} (${blocks})` },
+        { label: `${$t('menu.wallets')} (${walletsCount})` },
+        { label: `${$t('menu.pending')} (${pending})` },
+        { label: `${$t('menu.newTransaction')}` },
+        { label: `${$t('menu.setting')}` },
+      ]
+    })
     const activeTab = ref(0)
     const onTabClick = (i) => {
       activeTab.value = i
