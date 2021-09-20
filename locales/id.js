@@ -42,6 +42,14 @@ export default {
       miningInProgress: 'Menambang blok',
       noteInProgress: 'Kamu dapat membuka Console / Dev Panel di browser untuk melihat apa yang terjadi...',
       startMining: 'Mulai menambang',
+      visualizer: {
+        title: 'Visualisasi Menambang',
+        newBlockCandidate:  'Calon Blok Baru',
+        hashRules:  'Aturan Hash',
+        generatedHash:  'Hasil Hash',
+        timeElapsed:  'Waktu Berlalu',
+        powDifficulty: 'Kesulitan PoW',
+      },
       dialog: {
         title: 'Sebelum Menambang',
         text: 'menyarankan Kamu untuk membuka konsol javascript / panel dev di browser Anda, untuk melihat simulasi apa yang terjadi saat menambang.',

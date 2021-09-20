@@ -5,9 +5,9 @@
   background: theme('colors.gray.50');
   & > .block-chain {
     @apply shadow-lg;
-    white-space: nowrap;
     min-width: 250px;
     max-width: 250px;
+    width: 250px;
     height: 100%;
     background: theme('colors.gray.50');
     z-index: 1;

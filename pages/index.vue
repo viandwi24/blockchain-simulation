@@ -54,7 +54,15 @@ export default defineComponent({
     onMounted(() => {
       createWallet('My Wallet', 1000000)
       setTimeout(() => startSelectLanguage().then(() => setTimeout(startTour, 500)), 500)
-      console.log(startSelectLanguage, startTour)
+      // # simulateTransactions
+      // createWallet('Alfian Dwi N', 0)
+      // const from = wallets[0]
+      // const to = wallets[1]
+      // blockchain.addTransaction(
+      //   (new Transaction(from.publicKey, to.publicKey, 100)).sign(from.privateKey)
+      // )
+      // onTabClick(2)
+      // console.log(startSelectLanguage, startTour)
     })
 
     return {

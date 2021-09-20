@@ -4,6 +4,11 @@ export default {
     edit: 'Edit',
     save: 'Save',
   },
+  other: {
+    to: 'To',
+    from: 'From',
+    amount: 'Amount',
+  },
   menu: {
     blocks: 'Blocks',
     wallets: 'Wallets',
@@ -37,11 +42,19 @@ export default {
       miningInProgress: 'Mining in progress...',
       noteInProgress: 'You can open Console / Dev Panel in your browser to see what happening...',
       startMining: 'Start Mining',
+      visualizer: {
+        title: 'Mining Visualizer',
+        newBlockCandidate: 'New Block Candidate',
+        hashRules: 'Hash Rules',
+        generatedHash: 'Generated Hash',
+        timeElapsed: 'Time Elapsed',
+        powDifficulty: 'PoW Difficulty',
+      },
       dialog: {
         title: 'Before Mining',
         text: 'I suggest you to open the javascript console / dev panel in your browser, to see a simulation of what happens when mining.',
-        next: 'No',
-        prev: 'Okay, Lets go'
+        next: 'Okay, Lets go',
+        prev: 'No',
       }
     },
     newTransaction: {
