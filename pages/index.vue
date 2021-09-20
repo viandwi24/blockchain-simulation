@@ -54,6 +54,7 @@ export default defineComponent({
     onMounted(() => {
       createWallet('My Wallet', 1000000)
       setTimeout(() => startSelectLanguage().then(() => setTimeout(startTour, 500)), 500)
+      console.log(startSelectLanguage, startTour)
     })
 
     return {

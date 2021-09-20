@@ -299,7 +299,7 @@ function addGroupStep3({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
   });
 }
 
-function addGroupStep4({ $sleep, tour, defaultButtons, withDefaultButton, onTabClick }) {
+function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, onTabClick }) {
   tour.addStep({
     title: 'Pending Transaction',
     text: `

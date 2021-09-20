@@ -45,7 +45,7 @@
               <font-awesome-icon :icon="['fas', 'chevron-right']" />
             </button>
           </transition>
-          <transition-group name="block" class="blocks transition-all duration-300 relative flex flex-row space-x-10">
+          <transition-group name="block" class="blocks transition-all duration-300 relative flex flex-row space-x-12">
             <div
               v-for="(block, i) in blockchain.chain"
               :key="`key-${i}`"
@@ -61,7 +61,7 @@
             >
               <div class="title py-2 px-3 font-semibold border-b border-gray-500">
                 {{ $t('components.blocks.block.title') }} {{ i+1 }}
-                <span v-if="i === 0" class="text-xs">({{ $t('components.blocks.block.title') }})</span>
+                <span v-if="i === 0" class="text-xs">({{ $t('components.blocks.block.genesisBlock') }})</span>
               </div>
               <div class="text-sm p-2 border-b border-gray-500">
                 <div class="mb-2">

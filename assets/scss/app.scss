@@ -10,16 +10,39 @@
     max-width: 250px;
     height: 100%;
     background: theme('colors.gray.50');
-      z-index: 1;
+    z-index: 1;
+
     & > .chain {
       content: '';
       height: 5px;
-      width: 40px;
+      width: 25px;
       position: absolute;
-      top: 50%;
-      left: -42px;
+      top: 4.75rem;
+      left: -52px;
       background: theme('colors.gray.500');
       z-index: -1;
+
+      &::after {
+        position: absolute;
+        content: '';
+        height: 5px;
+        width: 25px;
+        top: 3rem;
+        left: 25px;
+        background: theme('colors.gray.500');
+        z-index: -1;
+      }
+
+      &::before {
+        position: absolute;
+        content: '';
+        height: 50px;
+        width: 5px;
+        top: 0rem;
+        left: 25px;
+        background: theme('colors.gray.500');
+        z-index: -1;
+      }
     }
   }
 }
