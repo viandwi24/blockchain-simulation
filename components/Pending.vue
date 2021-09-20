@@ -4,8 +4,10 @@
       <div class="px-4 flex flex-col justify-between">
         <div class="text-2xl font-semibold">
           {{ $t('components.pending.visualizer.title') }}
+          <span v-if="loading" class="text-xs">Running...</span>
+          <span v-else class="text-xs">Finished...</span>
         </div>
-        <div class="py-4 flex flex-row">
+        <div class="py-4 flex flex-col lg:flex-row">
           <div class="blocks transition-all duration-300 relative flex flex-row">
             <div
               class="
@@ -47,20 +49,24 @@
               </div>
             </div>
           </div>
-          <div class="flex-1 py-4 pr-8 w-full">
-            <table class="table text-xs w-full">
-              <tr class="flex space-x-4 mb-2">
-                <th class="w-full md:w-1/12 text-right">{{ $t('components.pending.visualizer.powDifficulty') }}</th>
-                <td class="w-10/12 text-left">
+          <div class="flex-1 flex py-4 pr-8">
+            <table class="md:table flex-1 text-xs">
+              <tr class="flex flex-col md:flex-row md:space-x-4 mb-2">
+                <th class="md:w-2/12 text-left md:text-right">
+                  {{ $t('components.pending.visualizer.powDifficulty') }}
+                </th>
+                <td class="md:w-10/12 text-left">
                   {{ blockchain.blockProofOfWorkDifficulty }}
                   (
                     <span v-for="i in parseInt(blockchain.blockProofOfWorkDifficulty)" :key="i" class="text-red-500">0</span><span class="text-purple-500">RANDOMHASH</span>
                   )
                 </td>
               </tr>
-              <tr class="flex space-x-4 mb-2">
-                <th class="w-full md:w-1/12 text-right">{{ $t('components.pending.visualizer.hashRules') }}</th>
-                <td class="w-10/12 text-left">
+              <tr class="flex flex-col md:flex-row md:space-x-4 mb-2">
+                <th class="md:w-2/12 text-left md:text-right">
+                  {{ $t('components.pending.visualizer.hashRules') }}
+                </th>
+                <td class="md:w-10/12 text-left">
                   <span class="text-red-500">SHA256(</span>
                     <span class="text-green-500">previousHash</span> +
                     <span class="text-green-500">timestamp</span> +
@@ -69,24 +75,17 @@
                   <span class="text-red-500">)</span>
                 </td>
               </tr>
-              <tr class="flex space-x-4 mb-2">
-                <th class="w-full md:w-1/12 text-right">{{ $t('components.pending.visualizer.generatedHash') }}</th>
-                <td class="w-10/12 text-left">
-                  <span class="text-red-500">SHA256(</span>
-                    <span class="text-green-500">{{ blockchain.getLastBlock().previousHash }}</span> +
-                    <span class="text-green-500">{{ visualizer.timestamp }}</span> +
-                    <span class="text-green-500">payload {data}</span> +
-                    <span class="text-green-500">{{ visualizer.nonce }}</span>
-                  <span class="text-red-500">)</span>
-                </td>
+              <tr class="flex flex-col md:flex-row md:space-x-4 mb-2">
+                <th class="md:w-2/12 text-left md:text-right">
+                  {{ $t('components.pending.visualizer.timeElapsed') }}
+                </th>
+                <td class="md:w-10/12 text-left">{{ visualizer.elapsedTime }}s</td>
               </tr>
-              <tr class="flex space-x-4 mb-2">
-                <th class="w-full md:w-1/12 text-right">{{ $t('components.pending.visualizer.timeElapsed') }}</th>
-                <td class="w-10/12 text-left">{{ visualizer.elapsedTime }}s</td>
-              </tr>
-              <tr class="flex space-x-4 mb-2">
-                <th class="w-full md:w-1/12 text-right">Payload</th>
-                <td class="w-10/12 text-left">
+              <tr class="flex flex-col md:flex-row md:space-x-4 mb-2">
+                <th class="md:w-2/12 text-left md:text-right">
+                  Payload
+                </th>
+                <td class="md:w-10/12 text-left">
                   <textarea
                     v-model="visualizer.payload"
                     readonly
@@ -249,12 +248,14 @@ export default defineComponent({
       tour.start()
     }
     const startMining = async () => {
+      document.querySelector('.panel-pending-transaction').setAttribute('mining', '0')
       showVisualizer.value = true
       loading.value = true
       console.clear()
       await $sleep(1000)
       visualMine().finally(() => {
         loading.value = false
+        document.querySelector('.panel-pending-transaction').setAttribute('mining', '1')
       })
     }
     const visualMine = async () => {

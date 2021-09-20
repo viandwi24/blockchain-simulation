@@ -335,7 +335,7 @@ function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     text: `
       This is called Proof of Work, to ensure that existing transactions must be valid, sent by a valid person and valid funds as well.
       So miners are needed to do mining with their computing resources. Miners have to scramble the hashes to get the hash that suits their needs
-       Because the hash is unpredictable, the hash will continue to be scrambled until it is completely solved.
+      Because the hash is unpredictable, the hash will continue to be scrambled until it is completely solved.
     `,
     buttons: withDefaultButton({
       text: 'Next',
@@ -345,11 +345,13 @@ function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
         btn.click()
         console.log('Tour listening navigating to panel blocks')
         while(true) {
-          if (document.querySelector('.panel-blocks')) {
+          if (document.querySelector('.panel-pending-transaction').getAttribute('mining') === '1') {
             break
           }
           await $sleep(100)
         }
+        onTabClick(0)
+        await $sleep(500)
         return this.next()
       }
     })
