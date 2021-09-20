@@ -68,45 +68,76 @@ export default {
       prev: 'Kembali',
       finish: 'Selesai'
     },
-    steps: [
-      {
-        title: 'Halo, Selamat datang !',
-        text: 'Aplikasi ini dibuat untuk membantu Anda memahami cara blockchain digunakan dan membuat transaksi blockchain. Aku ingin membantu anda memahami cara menggunakan aplikasi ini.',
-        prev: 'Tidak usah',
-        next: 'Ya, bantu aku',
-      },
-      {
-        title: 'Blokchain',
-        text: 'Ini adalah kumpulan blok yang dirantai, blok ini adalah representasi dari suatu record dalam tabel di database.'
-      },
-      {
-        title: 'Blok Dirantai',
-        text: `
-          Setiap blok memiliki identitas (hash) yang mewakili data di dalamnya,
-          dan setiap blok akan menyimpan identitas (hash) dari blok sebelumnya, makanya disebut Blockchain karena blok akan dirantai.
-        `
-      },
-      {
-        title: 'Genesis Blok',
-        text: `
-          Genesis Block adalah blok pertama atau biasa disebut blok nomor 0.
-          Blok ini tidak berisi data transaksi, hanya sebagai blok pertama.
-          Di dunia nyata tepatnya Bitcoin, Blok pertama ditambang langsung oleh penciptanya, Satoshi Nakamoto.
-          Dan dia menyematkan pesan "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"
-        `
-      },
-      {
-        title: 'Hash Block (1)',
-        text: 'Ini adalah hash dari blok 2'
-      },
-      {
-        title: 'Hash Block (2)',
-        text: 'Blok ini juga mencatat hash dari blok sebelumnya'
-      },
-      {
-        title: 'Hash Block (3)',
-        text: 'Hasil hash dari blok 1 ini juga akan dimasukkan dalam catatan data dari blok selanjutnya yaitu blok 2'
-      }
-    ]
+    steps: {
+      group1: [
+        {
+          title: 'Halo, Selamat datang !',
+          text: 'Aplikasi ini dibuat untuk membantu Anda memahami cara blockchain digunakan dan membuat transaksi blockchain. Aku ingin membantu anda memahami cara menggunakan aplikasi ini.',
+          prev: 'Tidak usah',
+          next: 'Ya, bantu aku',
+        },
+        {
+          title: 'Blokchain',
+          text: 'Ini adalah kumpulan blok yang dirantai, blok ini adalah representasi dari suatu record dalam tabel di database.'
+        },
+        {
+          title: 'Blok Dirantai',
+          text: `
+            Setiap blok memiliki identitas (hash) yang mewakili data di dalamnya,
+            dan setiap blok akan menyimpan identitas (hash) dari blok sebelumnya, makanya disebut Blockchain karena blok akan dirantai.
+          `
+        },
+        {
+          title: 'Genesis Blok',
+          text: `
+            Genesis Block adalah blok pertama atau biasa disebut blok nomor 0.
+            Blok ini tidak berisi data transaksi, hanya sebagai blok pertama.
+            Di dunia nyata tepatnya Bitcoin, Blok pertama ditambang langsung oleh penciptanya, Satoshi Nakamoto.
+            Dan dia menyematkan pesan "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"
+          `
+        },
+        {
+          title: 'Hash Block (1)',
+          text: 'Ini adalah hash dari blok 2'
+        },
+        {
+          title: 'Hash Block (2)',
+          text: 'Blok ini juga mencatat hash dari blok sebelumnya'
+        },
+        {
+          title: 'Hash Block (3)',
+          text: 'Hasil hash dari blok 1 ini juga akan dimasukkan dalam catatan data dari blok selanjutnya yaitu blok 2'
+        }
+      ],
+      group2: [
+        {
+          title: 'Dompet',
+          text: `Dompet digital akan menyimpan kunci untuk akun kita, hanya akan ada kunci publik dan kunci pribadi.
+          Jadi mari kita buat contoh dompet.`
+        },
+        {
+          title: 'Buat dompet',
+          text: `Untuk membuat dompet baru klik tombol ini`
+        },
+        {
+          title: 'Isi nama',
+          text: `Beri nama untuk dompet`
+        },
+        {
+          title: 'Detail Dompet',
+          text: `Anda tidak dapat mengklik dompet untuk melihat detailnya, Anda dapat melihat kunci publik dan kunci pribadi. di dunia nyata, hanya kunci publik yang dapat dibagikan, Anda harus menyimpan kunci pribadi sebaik mungkin)`
+        },
+      ],
+      group3: [
+        {
+          title: 'Transaksi',
+          text: `Transaksi akan mencatat data transaksi Anda, dan nantinya beberapa transaksi akan masuk ke dalam blok. Untuk itu kita transaksi dulu.`
+        },
+        {
+          title: 'Pilih Alamat Tujuan',
+          text: `Anda harus menuliskan alamat tujuan dompet seseorang`
+        },
+      ],
+    }
   },
 }
