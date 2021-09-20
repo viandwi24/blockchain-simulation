@@ -54,11 +54,11 @@ mycoin.mine(mineAddress).then(() => {
   console.log(mycoin.isValid()) // true
 })
 ```
-This script you can see in `/blockchain-simulation/lib/example.js/`
+This script you can see in `/blockchain-simulation/lib/example.js`
 
 ## Contributors
 <a href="https://github.com/viandwi24/blockchain-simulation/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=viandwi24/forum"/>
+  <img src="https://contrib.rocks/image?repo=viandwi24/blockchain-simulation"/>
 </a>
 
 ## You Can Contribute!!!
