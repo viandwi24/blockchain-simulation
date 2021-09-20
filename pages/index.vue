@@ -161,21 +161,7 @@ function useTour({ onTabClick }) {
   const { $sleep, $t } = useContext()
 
   //
-  const defaultButtons = [
-    {
-      action() {
-        return this.back();
-      },
-      classes: 'shepherd-button-secondary',
-      text: $t('tour.button.prev')
-    },
-    {
-      action() {
-        return this.next();
-      },
-      text: $t('tour.button.next')
-    }
-  ]
+  let defaultButtons = []
   const withDefaultButton = (next) => {
     const btn = [ defaultButtons[0] ]
     btn.push(next)
@@ -191,6 +177,21 @@ function useTour({ onTabClick }) {
   }
 
   const startTour = () => {
+    defaultButtons = [
+      {
+        action() {
+          return this.back();
+        },
+        classes: 'shepherd-button-secondary',
+        text: $t('tour.button.prev')
+      },
+      {
+        action() {
+          return this.next();
+        },
+        text: $t('tour.button.next')
+      }
+    ]
     const tour = new Shepherd.Tour({
       useModalOverlay: true,
       defaultStepOptions: {
