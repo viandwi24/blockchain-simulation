@@ -43,6 +43,7 @@ export default defineComponent({
         block.previousHash = blockchain.getLastBlock().hash
         block.mine(2)
         blockchain.chain.push(block)
+        blockchain.blockProofOfWorkDifficulty = 3
       }
     }
 
