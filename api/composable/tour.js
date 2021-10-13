@@ -83,6 +83,11 @@ function addGroupStep1({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
   tour.addStep({
     title: $t('tour.steps.group1[1].title'),
     text: $t('tour.steps.group1[1].text'),
+    buttons: defaultButtons
+  });
+  tour.addStep({
+    title: $t('tour.steps.group1[2].title'),
+    text: $t('tour.steps.group1[2].text'),
     attachTo: {
       element: '.panel-blocks',
       on: 'bottom'
@@ -90,19 +95,10 @@ function addGroupStep1({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     buttons: defaultButtons
   });
   tour.addStep({
-    title: $t('tour.steps.group1[2].title'),
-    text: $t('tour.steps.group1[2].text'),
-    attachTo: {
-      element: '.panel-blocks > div:nth-child(3) > span',
-      on: 'right'
-    },
-    buttons: defaultButtons
-  });
-  tour.addStep({
     title: $t('tour.steps.group1[3].title'),
     text: $t('tour.steps.group1[3].text'),
     attachTo: {
-      element: '.block-chain:nth-child(1)',
+      element: '.panel-blocks > div:nth-child(3) > span',
       on: 'right'
     },
     buttons: defaultButtons
@@ -111,7 +107,7 @@ function addGroupStep1({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     title: $t('tour.steps.group1[4].title'),
     text: $t('tour.steps.group1[4].text'),
     attachTo: {
-      element: '.block-chain:nth-child(2) div:nth-child(2) div:nth-child(1)',
+      element: '.block-chain:nth-child(1)',
       on: 'right'
     },
     buttons: defaultButtons
@@ -120,14 +116,23 @@ function addGroupStep1({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     title: $t('tour.steps.group1[5].title'),
     text: $t('tour.steps.group1[5].text'),
     attachTo: {
+      element: '.block-chain:nth-child(2) div:nth-child(2) div:nth-child(1)',
+      on: 'right'
+    },
+    buttons: defaultButtons
+  });
+  tour.addStep({
+    title: $t('tour.steps.group1[6].title'),
+    text: $t('tour.steps.group1[6].text'),
+    attachTo: {
       element: '.block-chain:nth-child(2) > div:nth-child(2) > div:nth-child(2)',
       on: 'right'
     },
     buttons: defaultButtons
   });
   tour.addStep({
-      title: $t('tour.steps.group1[6].title'),
-      text: $t('tour.steps.group1[6].text'),
+      title: $t('tour.steps.group1[7].title'),
+      text: $t('tour.steps.group1[7].text'),
       attachTo: {
         element: '.block-chain:nth-child(1) > div:nth-child(2) > div:nth-child(1)',
         on: 'right'
@@ -301,12 +306,8 @@ function addGroupStep3({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
 
 function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, onTabClick }) {
   tour.addStep({
-    title: 'Pending Transaction',
-    text: `
-      Transactions that occur will not go directly to the block, will enter the pending queue.
-      To be able to verify transactions and provide a hash for the next block it takes extra work, this is called mining.
-      So lets Start Mining.
-    `,
+    title:  $t('tour.steps.group4[0].title'),
+    text: $t('tour.steps.group4[0].text'),
     attachTo: {
       element: '.panel-pending-transaction',
       on: 'top'
@@ -316,7 +317,19 @@ function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
         async action() {
           onTabClick(3)
           this.hide()
-          await $sleep(200)
+          await $sleep(300)
+          const select = document.querySelector('.panel-transaction > div > div:nth-child(3) > form > div:nth-child(2) > div:nth-child(2) > select')
+          select.setAttribute('value', 0)
+          select.querySelector('option:nth-child(1)').setAttribute('selected', 'selected')
+          const event = new Event('input')
+          select.dispatchEvent(event)
+          if ("createEvent" in document) {
+            const evt = document.createEvent("HTMLEvents");
+            evt.initEvent("change", false, true);
+            select.dispatchEvent(evt);
+          } else {
+            select.fireEvent("onchange");
+          }
           return this.back();
         },
         classes: 'shepherd-button-secondary',
@@ -331,12 +344,8 @@ function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     ]
   });
   tour.addStep({
-    title: 'Proof of Work',
-    text: `
-      This is called Proof of Work, to ensure that existing transactions must be valid, sent by a valid person and valid funds as well.
-      So miners are needed to do mining with their computing resources. Miners have to scramble the hashes to get the hash that suits their needs
-      Because the hash is unpredictable, the hash will continue to be scrambled until it is completely solved.
-    `,
+    title: $t('tour.steps.group4[1].title'),
+    text: $t('tour.steps.group4[1].text'),
     buttons: withDefaultButton({
       text: 'Next',
       async action () {
@@ -357,10 +366,8 @@ function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     })
   });
   tour.addStep({
-    title: 'New Block',
-    text: `
-      Now, the new Block has been added successfully.
-    `,
+    title: $t('tour.steps.group4[2].title'),
+    text: $t('tour.steps.group4[2].text'),
     attachTo: {
       element: '.block-chain:nth-child(3)',
       on: 'right'
@@ -373,12 +380,8 @@ function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     })
   });
   tour.addStep({
-    title: 'New Hash',
-    text: `
-      This is the hash generated from the previous proof of work.
-      This hash contains the data contained in the transaction, plus a timestamp, and added a nonce then the data will be hashed.
-      Therefore if the data is changed, then the hash will not match and is considered invalid.
-    `,
+    title: $t('tour.steps.group4[3].title'),
+    text: $t('tour.steps.group4[3].text'),
     attachTo: {
       element: '.block-chain:nth-child(3) > div:nth-child(2) > div:nth-child(1)',
       on: 'right'
@@ -391,10 +394,8 @@ function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     })
   });
   tour.addStep({
-    title: 'Previous Hash',
-    text: `
-      Don't forget to add the hash of the previous block.
-    `,
+    title: $t('tour.steps.group4[4].title'),
+    text: $t('tour.steps.group4[4].text'),
     attachTo: {
       element: '.block-chain:nth-child(3) > div:nth-child(2) > div:nth-child(2)',
       on: 'right'
@@ -407,13 +408,8 @@ function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     })
   });
   tour.addStep({
-    title: 'Nonce',
-    text: `
-      Nonce is a number that is added to the hash to ensure that the hash is unique.
-      A nonce is a random number added when mining, useful for finding a matching hash.
-      Because when the hash method is running, to get a more different hash, we add random numbers in it every time we try.
-      In this simulation, Nonce is not random, but Nonce starts from 0 and will increment until the hash is found.
-    `,
+    title: $t('tour.steps.group4[5].title'),
+    text: $t('tour.steps.group4[5].text'),
     attachTo: {
       element: '.block-chain:nth-child(3) > div:nth-child(3) > div:nth-child(2)',
       on: 'right'
@@ -430,10 +426,8 @@ function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     })
   });
   tour.addStep({
-    title: 'Detail Block',
-    text: `
-      Body of block, can contain more than one transaction. In this case there are two transactions.
-    `,
+    title: $t('tour.steps.group4[6].title'),
+    text: $t('tour.steps.group4[6].text'),
     attachTo: {
       element: '.panel-block-detail > div:nth-child(2) > div:nth-child(1)',
       on: 'top'
@@ -446,11 +440,8 @@ function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     })
   });
   tour.addStep({
-    title: 'Signature',
-    text: `
-      We also added a signature, the signature is the hash sentence generated from the contents of the transaction with the sender's private key.
-      That way we can ensure that this transaction is valid from the sender.
-    `,
+    title: $t('tour.steps.group4[7].title'),
+    text: $t('tour.steps.group4[7].text'),
     attachTo: {
       element: '.panel-block-detail > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(5)',
       on: 'top'
@@ -463,11 +454,8 @@ function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     })
   });
   tour.addStep({
-    title: 'Mining Reward',
-    text: `
-      in the second transaction here is mining rewards. as a reward for the miners who have been mining we will give them a coin prize.
-      so in this simulation we also add system transactions to this block.
-    `,
+    title: $t('tour.steps.group4[8].title'),
+    text: $t('tour.steps.group4[8].text'),
     attachTo: {
       element: '.panel-block-detail > div:nth-child(2) > div:nth-child(2)',
       on: 'top'
@@ -480,10 +468,8 @@ function addGroupStep4({ $t, $sleep, tour, defaultButtons, withDefaultButton, on
     })
   });
   tour.addStep({
-    title: 'Finished!',
-    text: `
-      Thank you for following the tour guide this time! Have fun and have a nice day!
-    `,
+    title: $t('tour.steps.group4[9].title'),
+    text: $t('tour.steps.group4[9].text'),
     buttons: withDefaultButton({
       text: 'Finish',
       action () {

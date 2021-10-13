@@ -86,6 +86,10 @@ export default {
         },
         {
           title: 'Blokchain',
+          text: 'Secara singkat, Blockchain adalah suatu teknologi meliputi konsep teknis untuk suatu sistem penyimpanan data digital. Blockchain bisa diibaratkan database juga, dimana didalamnya berisi kumpulan blok - blok, blok ini merepresentasikan satu kesatuan record. Dalam satu blok dapat berisi banyak data juga didalamnya. Blockchain sekarang sangat populer berkat digunakan dalam sistem cryptocurrency.'
+        },
+        {
+          title: 'Blokchain',
           text: 'Ini adalah kumpulan blok yang dirantai, blok ini adalah representasi dari suatu record dalam tabel di database.'
         },
         {
@@ -146,6 +150,79 @@ export default {
           text: `Anda harus menuliskan alamat tujuan dompet seseorang`
         },
       ],
+      group4: [
+        {
+          title: 'Transaksi Tertunda',
+          text: `
+          Transaksi yang terjadi tidak akan langsung masuk ke blok, akan masuk ke antrian pending.
+          Untuk dapat memverifikasi transaksi dan memberikan hash untuk blok berikutnya dibutuhkan kerja ekstra, ini disebut penambangan.
+          Jadi mari kita mulai menambang.
+          `
+        },
+        {
+          title: 'Bukti Kerja',
+          text: `
+          Ini namanya Proof of Work, untuk memastikan transaksi yang ada harus valid, dikirim oleh orang yang valid dan dana yang valid juga.
+          Sehingga penambang diperlukan untuk melakukan penambangan dengan sumber daya komputasi mereka. Penambang harus mengacak hash untuk mendapatkan hash yang sesuai dengan kebutuhan mereka
+          Karena hash tidak dapat diprediksi, hash akan terus diacak sampai benar-benar terpecahkan.
+          `
+        },
+        {
+          title: 'Blok Baru',
+          text: `
+          Sekarang, Blok baru telah berhasil ditambahkan.
+          `
+        },
+        {
+          title: 'Hash Baru',
+          text: `
+          Ini adalah hash yang dihasilkan dari bukti kerja sebelumnya.
+          Hash ini berisi data yang terdapat dalam transaksi, ditambah timestamp, dan ditambah dengan nonce maka data tersebut akan di hash.
+          Oleh karena itu jika data diubah, maka hash tidak akan cocok dan dianggap tidak valid.
+          `
+        },
+        {
+          title: 'Hash Sebelumnya',
+          text: `
+          Jangan lupa untuk menambahkan hash dari blok sebelumnya.
+          `,
+        },
+        {
+          title: 'Nonce',
+          text: `
+          Nonce adalah angka yang ditambahkan ke hash untuk memastikan bahwa hash itu unik.
+          Nonce adalah nomor acak yang ditambahkan saat menambang, berguna untuk menemukan hash yang cocok.
+          Karena ketika metode hash sedang berjalan, untuk mendapatkan hash yang lebih berbeda, kami menambahkan angka acak di dalamnya setiap kali kami mencoba.
+          Dalam simulasi ini, Nonce tidak acak, tetapi Nonce dimulai dari 0 dan akan bertambah hingga hash ditemukan.
+          `,
+        },
+        {
+          title: 'Detail Blok',
+          text: `
+          Body of block, dapat berisi lebih dari satu transaksi. Dalam hal ini ada dua transaksi.
+          `,
+        },
+        {
+          title: 'Tanda Tangan',
+          text: `
+          Kami juga menambahkan tanda tangan, tanda tangan adalah kalimat hash yang dihasilkan dari isi transaksi dengan kunci pribadi pengirim.
+          Dengan begitu kami dapat memastikan bahwa transaksi ini valid dari pengirim.
+          `,
+        },
+        {
+          title: 'Hadiah Penambangan',
+          text: `
+          pada transaksi kedua disini adalah mining rewards. sebagai hadiah untuk para penambang yang telah menambang kami akan memberi mereka hadiah koin.
+          jadi dalam simulasi ini kami juga menambahkan transaksi sistem ke blok ini.
+          `,
+        },
+        {
+          title: 'Selesai!',
+          text: `
+          Terima kasih telah mengikuti pemandu wisata kali ini! Bersenang-senang dan semoga harimu menyenangkan!
+          `,
+        },
+      ]
     }
   },
 }
