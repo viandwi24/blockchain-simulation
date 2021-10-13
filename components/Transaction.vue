@@ -88,7 +88,7 @@ export default defineComponent({
     const transaction = reactive({
       from: wallets[0].publicKey,
       to: null,
-      amount: 1,
+      amount: 10,
     })
 
     const create = () => {
