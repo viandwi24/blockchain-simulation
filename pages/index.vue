@@ -1,13 +1,16 @@
 <template>
-  <div class="screen flex flex-col min-h-screen max-h-screen overflow-x-hidden shadow-xl">
-    <Navbar />
-    <div class="flex-1 flex flex-col max-h-full overflow-y-auto overflow-x-hidden bg-blue-500">
-      <div class="flex-1 container p-4 mx-auto flex flex-col justify-center">
-        <Menu :tabs.sync="tabs" :active-tab.sync="activeTab" @onTabClick="onTabClick" />
-        <component :is="componentTab" :blockchain.sync="blockchain" :wallets.sync="wallets" @changeTab="onTabClick" />
+  <div>
+    <div v-if="!loading" class="screen flex flex-col min-h-screen max-h-screen overflow-x-hidden shadow-xl">
+      <Navbar />
+      <div class="flex-1 flex flex-col max-h-full overflow-y-auto overflow-x-hidden bg-blue-500">
+        <div class="flex-1 container p-4 mx-auto flex flex-col justify-center">
+          <Menu :tabs.sync="tabs" :active-tab.sync="activeTab" @onTabClick="onTabClick" />
+          <component :is="componentTab" :blockchain.sync="blockchain" :wallets.sync="wallets" @changeTab="onTabClick" />
+        </div>
       </div>
+      <Log />
     </div>
-    <Log />
+    <Loader v-else />
   </div>
 </template>
 
@@ -25,6 +28,7 @@ export default defineComponent({
     // Setup blockchain
     const blockchain = reactive(new Blockchain())
     const wallets = reactive([])
+    const loading = ref(true)
 
     // ui
     const { tabs, activeTab, componentTab, onTabClick } = useUI({ blockchain, wallets })
@@ -52,7 +56,7 @@ export default defineComponent({
     const { startTour } = useTour({ onTabClick })
 
     // events
-    onMounted(() => {
+    const startWebsite = () => {
       createWallet('My Wallet', 1000000)
       setTimeout(() => startSelectLanguage().then(() => setTimeout(startTour, 500)), 500)
       // # simulateTransactions
@@ -64,6 +68,13 @@ export default defineComponent({
       // )
       // onTabClick(2)
       // console.log(startSelectLanguage, startTour)
+    }
+    onMounted(() => {
+      const timeout = 9000
+      setTimeout(() => {
+        loading.value = false
+        startWebsite()
+      }, timeout);
     })
 
     return {
@@ -74,6 +85,8 @@ export default defineComponent({
       activeTab,
       componentTab,
       onTabClick,
+
+      loading
     }
   },
   head() {

@@ -172,6 +172,12 @@ pre {
   padding: 1rem;
   text-align: center;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 0.5rem;
+  }
 }
 
 .shepherd-button:hover {
