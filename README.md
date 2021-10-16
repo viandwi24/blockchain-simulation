@@ -4,7 +4,10 @@ This is just a Web to simulate how Blockchain works in a short and simple way. B
 ![Preview](https://github.com/viandwi24/blockchain-simulation/blob/main/static/preview.gif?raw=true)
 
 ## Demo
-To see directly, you can see via the following lin : [Live Demo](https://viandwi24.github.io/blockchain-simulation/)
+To see directly, you can see via the following link : [Live Demo](https://viandwi24.github.io/blockchain-simulation/)
+Loader Animation create in After Effect, if you wanna see :
+* [Loader render in mp4](https://viandwi24.github.io/blockchain-simulation/loader.mp4)
+* [Loader converted in lottie files (json)](https://github.com/viandwi24/blockchain-simulation/blob/main/static/blockchain.json)
 
 
 ## Usage
@@ -24,8 +27,8 @@ mycoin.blockProofOfWorkDifficulty = 4
 const mywallet = (new KeyGenerator()).generate() // { publicKey: '...', privateKey: '...' }
 
 // make default balance of wallet
-const sustemTransaction = (new Transaction(mycoin.system.publicKey, mywallet.publicKey, 1000)).sign(mycoin.system.privateKey)
-mycoin.addTransaction(sustemTransaction)
+const systemTransaction = (new Transaction(mycoin.system.publicKey, mywallet.publicKey, 1000)).sign(mycoin.system.privateKey)
+mycoin.addTransaction(systemTransaction)
 // mycoin.mine(mycoin.system.privateKey)
 
 // create a new transaction
