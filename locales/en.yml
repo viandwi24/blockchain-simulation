@@ -1,0 +1,19 @@
+components:
+  language_switcher:
+    change_language: change language
+  theme_switcher:
+    theme: theme
+    change_theme: change theme
+pages:
+  index:
+    title: blockchain,simulator
+  network:
+    title: network
+    nav: network
+  node:
+    title: node
+    nav: node
+banners:
+  welcome: hello, welcome to %{app_name}!
+others:
+  learn_more: learn more

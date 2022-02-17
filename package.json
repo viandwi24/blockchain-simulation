@@ -1,0 +1,65 @@
+{
+  "name": "nuxt3-awesome-starter",
+  "version": "0.1.0",
+  "description": "a Nuxt 3 starter template or boilerplate with a lot of useful features. Nuxt3 + Tailwindcss 3",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/viandwi24/nuxt3-awesome-starter"
+  },
+  "author": "viandwi24",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "node .output/server/index.mjs",
+    "postinstall": "husky install",
+    "lint": "eslint --ext \".ts,.js,.vue\" --ignore-path .gitignore .",
+    "lintfix": "eslint --fix --ext \".ts,.js,.vue\" --ignore-path .gitignore .",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.1.0",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@headlessui/vue": "^1.4.3",
+    "@iconify/json": "^1.1.456",
+    "@intlify/nuxt3": "^0.1.10",
+    "@nuxtjs/eslint-config-typescript": "^7.0.2",
+    "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/harlem": "^1.0.0",
+    "@nuxtjs/svg": "^0.3.0",
+    "@pinia/nuxt": "^0.1.8",
+    "@types/crypto-js": "^4.1.1",
+    "@vueuse/nuxt": "^7.5.5",
+    "autoprefixer": "^10.4.2",
+    "eslint": "^8.3.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-nuxt": "^3.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^12.3.3",
+    "nuxt-windicss": "^2.2.4",
+    "nuxt3": "3.0.0-27417467.467ab69",
+    "pinia": "^2.0.9",
+    "postcss": "^8.4.5",
+    "prettier": "^2.5.0",
+    "sass": "^1.47.0",
+    "sass-loader": "^12.4.0",
+    "tailwind-config-viewer": "^1.6.3",
+    "tailwindcss": "^3.0.23",
+    "typescript": "^4.5.2",
+    "unplugin-icons": "^0.13.0",
+    "unplugin-vue-components": "^0.17.11"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,vue}": [
+      "yarn lintfix"
+    ]
+  },
+  "dependencies": {
+    "crypto-esm": "^0.0.5",
+    "crypto-js": "^4.1.1",
+    "js-sha256": "^0.9.0",
+    "postcss-loader": "^6.2.1",
+    "v-network-graph": "^0.4.2"
+  }
+}
